@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+import logging
 from starlette.middleware.cors import CORSMiddleware
 
 from api import route
@@ -18,6 +19,16 @@ app.add_middleware(
 
 app.include_router(route)
 
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    logger.info(f"Request: {request.method} {request.url}")
+    response = await call_next(request)
+    logger.info(f"Response: {response.status_code}")
+    return response
 
 def start():
     """

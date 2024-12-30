@@ -15,7 +15,7 @@ class ChainId(IntEnum):
 
 class ChainAddress(BaseModel):
     address: str
-    chain_id: ChainId
+    chainId: ChainId
     type: AddressType | None = AddressType.UNKNOWN
     name: str | None = None
 
