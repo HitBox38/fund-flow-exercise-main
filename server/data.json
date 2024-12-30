@@ -1,0 +1,114 @@
+[
+  {
+    "source": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x39cd23328b5ba304ae70bb0c1866e224f727f962",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x4484656e7aed645c15ff01c6a4a857f01a604bb6",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "Contract",
+      "name": "RewardProgramsRegistry",
+      "address": "0x3129c041b372ee93a5a8756dc4ec6f154d85bc9a",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x4484656e7aed645c15ff01c6a4a857f01a604bb6",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x4484656e7aed645c15ff01c6a4a857f01a604bb6",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x31bbfb770f4cde4fe2a7c9409e4cdf70fba96509",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x31bbfb700bc130b470d550694d4644a8fba96509",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0xcec49eed89f441aaff5737cd87c63d8eafee0bfe",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x31bbfb700bc130b470d550694d4644a8fba96509",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0xd2dd3caa1471c7afa6ab668da940c839cf7f4728",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x31bbfb700bc130b470d550694d4644a8fba96509",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0xc6fc60a29779f62aede5477016742add6292cf9a",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "Contract",
+      "name": "USDC",
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x4484656e7aed645c15ff01c6a4a857f01a604bb6",
+      "chain_id": 1
+    }
+  },
+  {
+    "source": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x314446119cc1e630badd7e894dbcbf8f75a89759",
+      "chain_id": 1
+    },
+    "dest": {
+      "type": "EOA",
+      "name": null,
+      "address": "0x4484656e7aed645c15ff01c6a4a857f01a604bb6",
+      "chain_id": 1
+    }
+  }
+]
