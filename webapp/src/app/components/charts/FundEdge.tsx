@@ -1,16 +1,27 @@
-import React from 'react';
-import { EdgeProps, } from 'reactflow';
+import React from "react";
+import { BaseEdge, EdgeProps, getBezierPath } from "reactflow";
 
-export function FundEdge(
-    {
-        sourceX,
-        sourceY,
-        targetX,
-        targetY,
-        sourcePosition,
-        targetPosition,
+export function FundEdge({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  ...rest
+}: EdgeProps) {
+  const [edgePath] = getBezierPath({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
+  });
 
-        markerEnd,
-    }: EdgeProps) {
-
+  return (
+    <>
+      <BaseEdge {...rest} path={edgePath} />
+    </>
+  );
 }

@@ -1,19 +1,18 @@
-import { FundEdge } from '@/app/components/charts/FundEdge';
-import { FundNode } from '@/app/components/charts/FundNode';
-
+import { FundEdge } from "@/app/components/charts/FundEdge";
+import { FundNode } from "@/app/components/charts/FundNode";
 
 export const NODE_TYPES = {
-    FUND_NODE: 'fundNode',
+  FUND_NODE: "fundNode",
 };
 
 export const EDGES_TYPES = {
-    FUND_EDGE: 'fundEdge',
+  FUND_EDGE: "fundEdge",
 };
 
 export const nodeTypes = {
-    [NODE_TYPES.FUND_NODE]: FundNode,
+  [NODE_TYPES.FUND_NODE]: FundNode,
 };
 
 export const customEdges = {
-    [EDGES_TYPES.FUND_EDGE]: FundEdge,
+  [EDGES_TYPES.FUND_EDGE]: FundEdge,
 };
