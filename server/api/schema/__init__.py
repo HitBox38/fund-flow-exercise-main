@@ -18,6 +18,9 @@ class ChainAddress(BaseModel):
     chainId: ChainId
     type: AddressType | None = AddressType.UNKNOWN
     name: str | None = None
+    
+    class Config:
+        frozen = True
 
 
 class FundGraphEdge(BaseModel):
@@ -27,3 +30,6 @@ class FundGraphEdge(BaseModel):
 
 class FundGraphResponse(BaseModel):
     edges: list[FundGraphEdge]
+
+class AllAddressesResponse(BaseModel):
+    addresses: list[ChainAddress]

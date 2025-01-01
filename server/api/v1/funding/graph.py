@@ -3,8 +3,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 import logging
 
-from api.schema import FundGraphResponse, ChainId, FundGraphEdge, ChainAddress
-from api.utils import try_parse_obj_as
+from api.schema import FundGraphResponse, ChainId, FundGraphEdge, ChainAddress, AllAddressesResponse
 
 route = APIRouter(
     prefix="/graph",
@@ -23,6 +22,29 @@ def load_data():
         raise HTTPException(status_code=500, detail="Data file not found.")
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="Data file is invalid.")
+
+@route.get("/", response_model=AllAddressesResponse)
+def get_all_unique_addresses():
+    try:
+        # Load and parse the data
+        raw_data = load_data()
+        
+        addresses_set = set([
+            ChainAddress(chainId=edge["source"]["chain_id"],
+                address=edge["source"]["address"],
+                type=edge["source"]["type"],
+                name=edge["source"]["name"],
+                )
+            for edge in raw_data
+        ])
+        
+        # Build the response
+        response = AllAddressesResponse(addresses=list(addresses_set))
+        
+        return response
+    except Exception as e:
+        logging.exception(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail=e)
 
 @route.get("/{chain}/{address}", response_model=FundGraphResponse)
 def get_address_graph(
@@ -62,4 +84,4 @@ def get_address_graph(
         return response
     except Exception as e:
         logging.exception(f"Unexpected error: {e}")
-        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
+        raise HTTPException(status_code=500, detail=e)
