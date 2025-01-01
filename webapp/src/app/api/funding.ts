@@ -2,9 +2,10 @@
 
 import { ChainAddress } from "@/app/types/chainAddress";
 import { FundingResData } from "@/app/types/fundingRecord";
+import { API_URL } from "./api.constants";
 
 export const getFundingGraph = async (source: ChainAddress): Promise<FundingResData> => {
-  return await fetch(
-    `http://127.0.0.1:8000/api/v1/funding/graph/${source.chainId}/${source.address}`
-  ).then((res) => res.json());
+  return await fetch(`${API_URL}/funding/graph/${source.chainId}/${source.address}`).then((res) =>
+    res.json()
+  );
 };
