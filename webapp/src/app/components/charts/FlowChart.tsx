@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo } from "react";
+import { memo, useCallback, useEffect, useMemo } from "react";
 import {
   Edge,
   FitViewOptions,
@@ -8,11 +8,13 @@ import {
   ReactFlow,
   useEdgesState,
   useNodesState,
+  useReactFlow,
 } from "reactflow";
 import { customEdges, nodeTypes } from "@/app/components/charts/FlowChart.constants";
 
 const fitViewOptions: FitViewOptions = {
   padding: 0.3,
+  duration: 200,
 };
 
 type FlowChartProps = {
@@ -31,19 +33,29 @@ const FlowChart = ({ nodes, edges, className, children }: FlowChartProps) => {
 
   const [nodesState, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edgesState, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const { fitView } = useReactFlow();
 
   const memoizedNodeTypes = useMemo(() => nodeTypes, []);
   const memoizedEdgeTypes = useMemo(() => customEdges, []);
 
   const defaultEdgeOptions = useMemo(() => ({ zIndex: 0 }), []);
 
+  const fitViewOnUpdate = useCallback(() => {
+    // Small delay to ensure nodes are properly rendered
+    setTimeout(() => {
+      fitView(fitViewOptions);
+    }, 100);
+  }, [fitView]);
+
   useEffect(() => {
     setNodes(nodes);
-  }, [nodes, setNodes]);
+    fitViewOnUpdate();
+  }, [nodes, setNodes, fitViewOnUpdate]);
 
   useEffect(() => {
     setEdges(edges);
-  }, [edges, setEdges]);
+    fitViewOnUpdate();
+  }, [edges, setEdges, fitViewOnUpdate]);
 
   return (
     <ReactFlow
@@ -56,7 +68,8 @@ const FlowChart = ({ nodes, edges, className, children }: FlowChartProps) => {
       nodeTypes={memoizedNodeTypes}
       edgeTypes={memoizedEdgeTypes}
       className={className}
-      defaultEdgeOptions={defaultEdgeOptions}>
+      defaultEdgeOptions={defaultEdgeOptions}
+      onLoadedData={fitViewOnUpdate}>
       {children}
     </ReactFlow>
   );

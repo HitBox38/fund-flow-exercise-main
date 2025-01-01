@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllAddresses } from "../api/getAllAddresses";
 import clsx from "clsx";
 import { Error } from "../components/error/Error";
+import { ReactFlowProvider } from "reactflow";
 
 const sourceChainAddress: ChainAddress = {
   address: "0x39cd23328b5ba304ae70bb0c1866e224f727f962",
@@ -48,7 +49,14 @@ export default function Dashboard() {
       ) : fundsFlowError ? (
         <Error error={fundsFlowError} />
       ) : (
-        <FlowChart nodes={nodes} edges={edges} onEdgesChange={() => {}} onNodesChange={() => {}} />
+        <ReactFlowProvider>
+          <FlowChart
+            nodes={nodes}
+            edges={edges}
+            onEdgesChange={() => {}}
+            onNodesChange={() => {}}
+          />
+        </ReactFlowProvider>
       )}
     </div>
   );
